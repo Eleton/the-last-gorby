@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #00b8ab;
+      }
+      .title {
+        flex: 2;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        font-size: 4.5rem;
+        color: #424242;
+        text-align: center;
+      }
+      .footer {
+        flex: 2;
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        font-size: 2.5rem;
+        color: #424242;
+        text-align: center;
+      }
+      .gorbyContainer {
+        flex: 5;
+      }
+      .base.portrait {
+        transform: rotate(90deg);
+        width: 60vh;
+        height: 30vh;
+        flex: 3;
+      }
+      .base {
+        width: 40vw;
+        min-width: calc(200px + 40vw);
+        height: 20vw;
+        min-height: calc(100px + 20vw);
+        background-color: #d6934d;
+        border-radius: 100%;
+        position: relative;
+      }
+      .meat {
+        border-radius: 100%;
+        width: 75%;
+        height: 60%;
+        background-color: brown;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .bubble {
+        background-color: #d6934d;
+        border-bottom: 4px solid #222;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 100%;
+        width: 15%;
+        height: 30%;
+        position: absolute;
+      }
+      .one {
+        left: 50%;
+        transform: translate(-50%, 10%);
+      }
+      .two {
+        left: 50%;
+        transform: translate(50%, 20%) rotate(10deg);
+      }
+      .three {
+        left: 50%;
+        transform: translate(150%, 45%) rotate(20deg);
+      }
+      .four {
+        top: 0;
+        right: 0;
+        transform: translate(-20%, 110%) rotate(90deg);
+      }
+      .five {
+        bottom: 0;
+        left: 50%;
+        transform: translate(150%, -45%) rotate(160deg);
+      }
+      .six {
+        bottom: 0;
+        left: 50%;
+        transform: translate(50%, -20%) rotate(170deg);
+      }
+      .seven {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -10%) rotate(180deg);
+      }
+      .eight {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-150%, -20%) rotate(190deg);
+      }
+      .nine {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-250%, -45%) rotate(200deg);
+      }
+      .ten {
+        top: 0;
+        left: 0;
+        transform: translate(20%, 110%) rotate(270deg);
+      }
+      .eleven {
+        left: 50%;
+        transform: translate(-250%, 45%) rotate(-20deg);
+      }
+      .twelwe {
+        left: 50%;
+        transform: translate(-150%, 20%) rotate(-10deg);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">GRATTIS DEXTER!</h1>
+    <div class="gorbyContainer">
+      <div class="base">
+        <div class="meat"></div>
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+
+        <div class="bubble five"></div>
+        <div class="bubble six"></div>
+        <div class="bubble seven"></div>
+        <div class="bubble eight"></div>
+        <div class="bubble nine"></div>
+
+        <div class="bubble eleven"></div>
+        <div class="bubble twelwe"></div>
+
+        <div class="bubble four"></div>
+        <div class="bubble ten"></div>
+      </div>
+    </div>
+    <p class="footer">Nu finns det inga fler...?</p>
+  </body>
+  <script>
+    const gorby = document.querySelector(".base");
+    window.addEventListener("orientationchange", (event) => {
+      const { type } = event.target.screen.orientation;
+      if (type.includes("portrait")) {
+        gorby.classList.add("portrait");
+      } else if (type.includes("landscape")) {
+        gorby.classList.remove("portrait");
+      }
+    });
+  </script>
+</html>
