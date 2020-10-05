@@ -56,6 +56,9 @@
       .footer p {
         font-size: 3rem;
       }
+      .footer.hiddenFooter {
+        opacity: 0;
+      }
       .gorbyContainer {
         flex: 5;
       }
@@ -186,7 +189,7 @@
         <div class="bubble ten"></div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer hiddenFooter">
       <div></div>
       <p>Nu finns det inga fler.<span class="dotdotdot">..?</span></p>
       <img id="volume" src="volume_off.svg" alt="Sound on" />
@@ -194,7 +197,6 @@
   </body>
   <script>
     const dotdotdot = document.querySelector(".dotdotdot");
-    setTimeout(() => dotdotdot.classList.add("questionmark"));
     particlesJS.load(
       "background-hammer",
       "./particles_hammer.json",
@@ -206,7 +208,15 @@
       console.log("callback - particles.js config loaded");
     });
 
-    // const gorby = document.querySelector(".base");
+    const gorby = document.querySelector(".base");
+    const gorbyEvent = () => {
+      toggleSound();
+      const footer = document.querySelector(".footer");
+      footer.classList.remove("hiddenFooter");
+      gorby.removeEventListener("click", gorbyEvent);
+      dotdotdot.classList.add("questionmark");
+    };
+    gorby.addEventListener("click", gorbyEvent);
     // if (window.matchMedia("(orientation: portrait)").matches) {
     //   gorby.classList.add("portrait");
     // }
