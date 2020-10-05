@@ -36,7 +36,6 @@
         color: #424242;
         text-align: center;
         margin: 0;
-        padding: 2rem;
       }
       .footer {
         flex: 2;
@@ -207,25 +206,25 @@
       console.log("callback - particles.js config loaded");
     });
 
-    const gorby = document.querySelector(".base");
-    if (window.matchMedia("(orientation: portrait)").matches) {
-      gorby.classList.add("portrait");
-    }
-    window.addEventListener("orientationchange", (event) => {
-      const { type } = event.target.screen.orientation;
-      console.log(event.target.matchMedia("(orientation: portrait)").matches);
-      setTimeout(() => {
-        if (event.target.matchMedia("(orientation: portrait)").matches) {
-          gorby.classList.add("portrait");
-          console.log(event.target.matchMedia("(orientation: portrait)"));
-        } else if (
-          event.target.matchMedia("(orientation: landscape)").matches
-        ) {
-          gorby.classList.remove("portrait");
-          console.log("landscape");
-        }
-      }, 5);
-    });
+    // const gorby = document.querySelector(".base");
+    // if (window.matchMedia("(orientation: portrait)").matches) {
+    //   gorby.classList.add("portrait");
+    // }
+    // window.addEventListener("orientationchange", (event) => {
+    //   const { type } = event.target.screen.orientation;
+    //   console.log(event.target.matchMedia("(orientation: portrait)").matches);
+    //   setTimeout(() => {
+    //     if (event.target.matchMedia("(orientation: portrait)").matches) {
+    //       gorby.classList.add("portrait");
+    //       console.log(event.target.matchMedia("(orientation: portrait)"));
+    //     } else if (
+    //       event.target.matchMedia("(orientation: landscape)").matches
+    //     ) {
+    //       gorby.classList.remove("portrait");
+    //       console.log("landscape");
+    //     }
+    //   }, 5);
+    // });
 
     let sound = false;
     const volume = document.querySelector("#volume");
