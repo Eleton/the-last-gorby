@@ -10,8 +10,9 @@
       body {
         margin: 0;
         height: 100vh;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-rows: 20% auto 20%;
+        justify-items: center;
         align-items: center;
         flex-direction: column;
         background-color: #00b8ab;
@@ -34,6 +35,8 @@
         font-size: 4.5rem;
         color: #424242;
         text-align: center;
+        margin: 0;
+        padding: 2rem;
       }
       .footer {
         flex: 2;
@@ -49,7 +52,10 @@
         align-items: center;
       }
       .footer img {
-        width: 36px;
+        width: 40px;
+      }
+      .footer p {
+        font-size: 3rem;
       }
       .gorbyContainer {
         flex: 5;
@@ -151,6 +157,9 @@
       .dotdotdot.questionmark {
         opacity: 1;
       }
+      #volume {
+        cursor: pointer;
+      }
     </style>
     <script src="particles.min.js"></script>
   </head>
@@ -199,13 +208,23 @@
     });
 
     const gorby = document.querySelector(".base");
+    if (window.matchMedia("(orientation: portrait)").matches) {
+      gorby.classList.add("portrait");
+    }
     window.addEventListener("orientationchange", (event) => {
       const { type } = event.target.screen.orientation;
-      if (type.includes("portrait")) {
-        gorby.classList.add("portrait");
-      } else if (type.includes("landscape")) {
-        gorby.classList.remove("portrait");
-      }
+      console.log(event.target.matchMedia("(orientation: portrait)").matches);
+      setTimeout(() => {
+        if (event.target.matchMedia("(orientation: portrait)").matches) {
+          gorby.classList.add("portrait");
+          console.log(event.target.matchMedia("(orientation: portrait)"));
+        } else if (
+          event.target.matchMedia("(orientation: landscape)").matches
+        ) {
+          gorby.classList.remove("portrait");
+          console.log("landscape");
+        }
+      }, 5);
     });
 
     let sound = false;
