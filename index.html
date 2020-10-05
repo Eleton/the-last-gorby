@@ -143,6 +143,14 @@
         left: 50%;
         transform: translate(-150%, 20%) rotate(-10deg);
       }
+      .dotdotdot {
+        opacity: 0;
+        transition: opacity 20s;
+        transition-delay: 5s;
+      }
+      .dotdotdot.questionmark {
+        opacity: 1;
+      }
     </style>
     <script src="particles.min.js"></script>
   </head>
@@ -172,11 +180,13 @@
     </div>
     <div class="footer">
       <div></div>
-      <p>Nu finns det inga fler...?</p>
+      <p>Nu finns det inga fler.<span class="dotdotdot">..?</span></p>
       <img id="volume" src="volume_off.svg" alt="Sound on" />
     </div>
   </body>
   <script>
+    const dotdotdot = document.querySelector(".dotdotdot");
+    setTimeout(() => dotdotdot.classList.add("questionmark"));
     particlesJS.load(
       "background-hammer",
       "./particles_hammer.json",
@@ -200,6 +210,7 @@
 
     let sound = false;
     const volume = document.querySelector("#volume");
+    const audio = new Audio("anthem.mp3");
     const toggleSound = () => {
       const bg_hammer = document.querySelector("#background-hammer");
       const bg_gorba = document.querySelector("#background-gorba");
@@ -208,11 +219,13 @@
         sound = false;
         bg_hammer.classList.add("hidden");
         bg_gorba.classList.add("hidden");
+        audio.pause();
       } else {
         volume.src = "volume_on.svg";
         sound = true;
         bg_hammer.classList.remove("hidden");
         bg_gorba.classList.remove("hidden");
+        audio.play();
       }
     };
     volume.addEventListener("click", toggleSound);
