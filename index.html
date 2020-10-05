@@ -1,5 +1,11 @@
 <html>
   <head>
+    <!-- Icons made by
+    <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons"
+      >Smashicons</a
+    >
+    from
+    <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
     <style>
       body {
         margin: 0;
@@ -9,6 +15,17 @@
         align-items: center;
         flex-direction: column;
         background-color: #00b8ab;
+      }
+      .background {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .background.hidden {
+        opacity: 0;
       }
       .title {
         flex: 2;
@@ -25,6 +42,14 @@
         font-size: 2.5rem;
         color: #424242;
         text-align: center;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 10% 1fr 10%;
+        justify-items: center;
+        align-items: center;
+      }
+      .footer img {
+        width: 36px;
       }
       .gorbyContainer {
         flex: 5;
@@ -119,8 +144,11 @@
         transform: translate(-150%, 20%) rotate(-10deg);
       }
     </style>
+    <script src="particles.min.js"></script>
   </head>
   <body>
+    <div id="background-hammer" class="background hidden"></div>
+    <div id="background-gorba" class="background hidden"></div>
     <h1 class="title">GRATTIS DEXTER!</h1>
     <div class="gorbyContainer">
       <div class="base">
@@ -142,9 +170,24 @@
         <div class="bubble ten"></div>
       </div>
     </div>
-    <p class="footer">Nu finns det inga fler...?</p>
+    <div class="footer">
+      <div></div>
+      <p>Nu finns det inga fler...?</p>
+      <img id="volume" src="volume_off.svg" alt="Sound on" />
+    </div>
   </body>
   <script>
+    particlesJS.load(
+      "background-hammer",
+      "./particles_hammer.json",
+      function () {
+        console.log("callback - particles.js config loaded");
+      }
+    );
+    particlesJS.load("background-gorba", "./particles_gorba.json", function () {
+      console.log("callback - particles.js config loaded");
+    });
+
     const gorby = document.querySelector(".base");
     window.addEventListener("orientationchange", (event) => {
       const { type } = event.target.screen.orientation;
@@ -154,5 +197,24 @@
         gorby.classList.remove("portrait");
       }
     });
+
+    let sound = false;
+    const volume = document.querySelector("#volume");
+    const toggleSound = () => {
+      const bg_hammer = document.querySelector("#background-hammer");
+      const bg_gorba = document.querySelector("#background-gorba");
+      if (sound) {
+        volume.src = "volume_off.svg";
+        sound = false;
+        bg_hammer.classList.add("hidden");
+        bg_gorba.classList.add("hidden");
+      } else {
+        volume.src = "volume_on.svg";
+        sound = true;
+        bg_hammer.classList.remove("hidden");
+        bg_gorba.classList.remove("hidden");
+      }
+    };
+    volume.addEventListener("click", toggleSound);
   </script>
 </html>
