@@ -62,20 +62,23 @@
       .gorbyContainer {
         flex: 5;
       }
-      .base.portrait {
+      /* .base.portrait {
         transform: rotate(90deg);
         width: 60vh;
         height: 30vh;
         flex: 3;
-      }
+      } */
       .base {
         width: 40vw;
         min-width: calc(200px + 40vw);
         height: 20vw;
         min-height: calc(100px + 20vw);
         background-color: #d6934d;
+        border: 4px solid #222;
         border-radius: 100%;
         position: relative;
+      }
+      .base.clickable {
         cursor: pointer;
       }
       .meat {
@@ -154,7 +157,7 @@
       }
       .dotdotdot {
         opacity: 0;
-        transition: opacity 20s;
+        transition: opacity 60s;
         transition-delay: 5s;
       }
       .dotdotdot.questionmark {
@@ -171,7 +174,7 @@
     <div id="background-gorba" class="background hidden"></div>
     <h1 class="title">GRATTIS DEXTER!</h1>
     <div class="gorbyContainer">
-      <div class="base">
+      <div class="base clickable">
         <div class="meat"></div>
         <div class="bubble one"></div>
         <div class="bubble two"></div>
@@ -215,6 +218,7 @@
       const footer = document.querySelector(".footer");
       footer.classList.remove("hiddenFooter");
       gorby.removeEventListener("click", gorbyEvent);
+      gorby.classList.remove("clickable");
       dotdotdot.classList.add("questionmark");
     };
     gorby.addEventListener("click", gorbyEvent);
@@ -240,6 +244,7 @@
     let sound = false;
     const volume = document.querySelector("#volume");
     const audio = new Audio("anthem.mp3");
+    audio.loop = true;
     const toggleSound = () => {
       const bg_hammer = document.querySelector("#background-hammer");
       const bg_gorba = document.querySelector("#background-gorba");
